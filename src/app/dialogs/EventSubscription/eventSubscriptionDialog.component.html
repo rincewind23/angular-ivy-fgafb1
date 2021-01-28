@@ -1,0 +1,23 @@
+<h1 mat-dialog-title>Add New Event Subscription</h1>
+<div mat-dialog-content class="x">
+	<mat-form-field appearance="fill">
+		<mat-label>Select Org</mat-label>
+		<mat-select (selectionChange)="onOrgChange($event)" [(ngModel)]="selectedOrg">
+			<mat-option *ngFor="let connection of connections" [value]="connection.org">
+				{{connection.org}}
+			</mat-option>
+		</mat-select>
+	</mat-form-field>
+	<mat-form-field appearance="fill">
+		<mat-label>{{triggerPlaceholder}}</mat-label>
+		<mat-select [(ngModel)]="selectedTrigger">
+			<mat-option *ngFor="let trigger of triggerTypes" [value]="trigger.id">
+				{{trigger.name}}
+			</mat-option>
+		</mat-select>
+	</mat-form-field>
+</div>
+<div mat-dialog-actions>
+	<button mat-button (click)="onNoClick()">Cancel</button>
+	<button mat-button [mat-dialog-close]="{org:selectedOrg,trigger:selectedTrigger}" (click)="subscribe(selectedOrg, selectedTrigger)" cdkFocusInitial>Ok</button>
+</div>

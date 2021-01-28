@@ -1,0 +1,7 @@
+h1 {
+  font-family: Lato;
+}
+.mat-expansion-panel-body {
+  border: 1px;
+  flex-direction: column;
+}

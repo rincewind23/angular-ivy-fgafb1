@@ -1,0 +1,16 @@
+<div class="dashboardComponent connectionList">
+  <div class="header">Connections</div>
+	<mat-accordion>
+		<mat-expansion-panel *ngFor="let connection of connections">
+			<mat-expansion-panel-header>
+				<mat-checkbox [(ngModel)]="connection.checked" (change)="checkChanged()">{{connection.org}}
+				</mat-checkbox>
+			</mat-expansion-panel-header>
+			client ID: {{connection.client_id}}
+		</mat-expansion-panel>
+	</mat-accordion>
+	<div class="buttons">
+		<button (click)="showAddDialog()">Add</button>
+		<button (click)="removeSelected()" [disabled]="!anySelected">Remove Selected</button>
+	</div>
+</div>

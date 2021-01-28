@@ -1,0 +1,16 @@
+p {
+  font-family: Lato;
+}
+.dashboard {
+  display: flex;
+  border: solid;
+}
+.dashboardLeftColumn {
+  flex-direction: column;
+  border: darkgreen;
+}
+
+.dashboardRightColumn {
+  flex-direction: column;
+  border: lightcoral;
+}

@@ -1,0 +1,18 @@
+.dashboardComponent {
+  display: flex;
+  border: solid 1px;
+  flex-direction: column;
+  margin: 10px;
+}
+.dashboardComponent .header {
+  font-family: Arial;
+  background-color: lightgray;
+  text-align: center;
+}
+.dashboardComponent .buttons {
+  padding-top: 5px;
+  flex-direction: row;
+}
+.dashboardComponent .buttons button {
+  margin: 5px;
+}
