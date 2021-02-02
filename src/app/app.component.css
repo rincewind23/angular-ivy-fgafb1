@@ -8,9 +8,11 @@ p {
 .dashboardLeftColumn {
   flex-direction: column;
   border: darkgreen;
+  flex-grow: 0;
 }
 
 .dashboardRightColumn {
   flex-direction: column;
   border: lightcoral;
+  flex-grow: 2;
 }

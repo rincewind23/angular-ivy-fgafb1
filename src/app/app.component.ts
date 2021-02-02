@@ -3,6 +3,7 @@ import { Component, OnInit, VERSION } from "@angular/core";
 import { Connection } from "./connectionList.component";
 import { SubscriptionListComponent } from "./subscriptionList.component";
 import { Subscription } from "./subscriptionList.component";
+import { Event } from "./eventList.component";
 import axios from "axios";
 
 const httpUrl = "https://idn-ets-dashboard.herokuapp.com";
@@ -15,9 +16,14 @@ const httpUrl = "https://idn-ets-dashboard.herokuapp.com";
 export class AppComponent implements OnInit {
   connections = [];
   subscriptions = null;
+  events: Event[] = [];
   ngOnInit() {
     axios.get(httpUrl + "/connections").then(response => {
       this.connections = response.data;
+    });
+
+    axios.get(httpUrl + "/events").then(response => {
+      this.events = response.data;
     });
 
     let subs = new Map<string, Subscription[]>();

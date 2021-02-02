@@ -1,12 +1,12 @@
 <p>
-  ETS Dashboard
+	ETS Dashboard
 </p>
 <div id="connections" class="dashboard">
-  <div class="dashboardLeftColumn">
-    <connectionList [connections]="connections"></connectionList>
-    <subscriptionList [connections]="connections" [subscriptions]="subscriptions"></subscriptionList>
-  </div>
-  <div class="dashboardRightColumn">
-    Right Column
-  </div>
+	<div class="dashboardLeftColumn">
+		<connectionList [connections]="connections"></connectionList>
+		<subscriptionList [connections]="connections" [subscriptions]="subscriptions"></subscriptionList>
+	</div>
+	<div class="dashboardRightColumn">
+		<eventList [events]="events"></eventList>
+	</div>
 </div>

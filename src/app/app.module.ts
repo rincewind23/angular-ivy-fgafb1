@@ -7,10 +7,11 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatExpansionModule } from "@angular/material/expansion";
 import { MatSelectModule } from "@angular/material/select";
+//---------------------------------
 import { AppComponent } from "./app.component";
-import { EventSubscriptionDialog } from "./dialogs/EventSubscription/eventSubscriptionDialog.component";
-import { HelloComponent } from "./hello.component";
 import { ConnectionListComponent } from "./connectionList.component";
+import { EventListComponent } from "./eventList.component";
+import { EventSubscriptionDialog } from "./dialogs/EventSubscription/eventSubscriptionDialog.component";
 import { SubscriptionListComponent } from "./subscriptionList.component";
 
 @NgModule({
@@ -26,10 +27,10 @@ import { SubscriptionListComponent } from "./subscriptionList.component";
   ],
   declarations: [
     AppComponent,
-    HelloComponent,
+    EventSubscriptionDialog,
     ConnectionListComponent,
-    SubscriptionListComponent,
-    EventSubscriptionDialog
+    EventListComponent,
+    SubscriptionListComponent
   ],
   bootstrap: [AppComponent]
 })
