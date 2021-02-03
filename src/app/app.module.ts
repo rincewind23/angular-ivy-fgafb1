@@ -15,7 +15,6 @@ import { AppComponent } from "./app.component";
 import { ConnectionListComponent } from "./connectionList.component";
 import { EventListComponent } from "./eventList.component";
 import { EventSubscriptionDialog } from "./dialogs/EventSubscription/eventSubscriptionDialog.component";
-import { NewConnectionDialog } from "./Connection/newConnectionDialog.component";
 import { SubscriptionListComponent } from "./subscriptionList.component";
 
 @NgModule({
