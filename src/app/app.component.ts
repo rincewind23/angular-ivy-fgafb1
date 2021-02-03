@@ -14,16 +14,27 @@ const httpUrl = "https://idn-ets-dashboard.herokuapp.com";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent implements OnInit {
+  lastEventTimestamp;
+
   connections = [];
   subscriptions = null;
   events: Event[] = [];
-  ngOnInit() {
+
+  getSubscriptions() {
     axios.get(httpUrl + "/connections").then(response => {
       this.connections = response.data;
     });
+  }
 
+  ngOnInit() {
+
+    this.getSubscriptions();
     axios.get(httpUrl + "/events").then(response => {
       this.events = response.data;
+      console.log(`events=${JSON.stringify(this.events)}`);
+      if (this.events.length > 0) {
+        this.lastEventTimestamp = this.events[this.events.length - 1].timestamp;
+      }
     });
 
     let subs = new Map<string, Subscription[]>();
@@ -36,6 +47,6 @@ export class AppComponent implements OnInit {
       { checked: false, name: "SomeOtherthing" }
     ]);
     this.subscriptions = subs;
-    console.log(`keys: ${JSON.stringify(this.subscriptions)}`);
+    console.log(`keys: ${JSON.stringify(this.subscriptions)}`);    
   }
 }

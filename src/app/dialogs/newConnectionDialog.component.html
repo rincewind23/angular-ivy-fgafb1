@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>Add New Connection</h1>
+<div mat-dialog-content class="x">
+	<mat-form-field appearance="fill">
+		<mat-label>Org</mat-label>
+		<input matInput [newOrg]="newOrg">
+		<mat-error *ngIf="!newOrg">Org is required</mat-error>
+	</mat-form-field>
+	<!-- <mat-form-field appearance="fill">
+		<mat-label>Client ID</mat-label>
+		<input matInput [newID]="newID">
+		<mat-error *ngIf="!newID">Client ID is required</mat-error>
+	</mat-form-field> -->
+	<!-- <mat-form-field appearance="fill">
+		<mat-label>Client Secret</mat-label>
+		<input matInput [newSecret]="newSecret">
+		<mat-error *ngIf="!newSecret">Secret is required</mat-error>
+	</mat-form-field>  -->
+</div>
+<div mat-dialog-actions>
+	<button mat-button (click)="onNoClick()">Cancel</button>
+	<button mat-button (click)="addConnection()" [disabled]="!valid()">Ok</button>
+</div>

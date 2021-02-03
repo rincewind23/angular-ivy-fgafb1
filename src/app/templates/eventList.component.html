@@ -1,5 +1,27 @@
-<div class="dashboardComponent subscriptionList">
+<div class="dashboardComponent eventList">
 	<div class="header">Events</div>
+	<div class="table">
+		<table mat-table [dataSource]="events">
+			<ng-container matColumnDef="timestamp">
+				<th mat-header-cell *matHeaderCellDef> Time </th>
+				<td mat-cell *matCellDef="let event"> {{event.tstamp}} </td>
+			</ng-container>
+			<ng-container matColumnDef="org">
+				<th mat-header-cell *matHeaderCellDef> Org </th>
+				<td mat-cell *matCellDef="let event"> {{event.org}} </td>
+			</ng-container>
+			<ng-container matColumnDef="event">
+				<th mat-header-cell *matHeaderCellDef> Event </th>
+				<td mat-cell *matCellDef="let event"> {{event.triggerid}} </td>
+			</ng-container>
+			<ng-container matColumnDef="object">
+				<th mat-header-cell *matHeaderCellDef> Target</th>
+				<td mat-cell *matCellDef="let event"> {{event.target}} </td>
+			</ng-container>
+			<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+			<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+		</table>
+	</div>
 	<div class="buttons">
 		<button (click)="respond()" [disabled]="true">
       Respond

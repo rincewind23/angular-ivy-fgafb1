@@ -2,7 +2,8 @@ import { Component, Input } from "@angular/core";
 
 export interface Event {
   guid: string;
-  date: Date;
+  timestamp: Date;
+  org: string;
 }
 @Component({
   selector: "eventList",
@@ -14,6 +15,8 @@ export interface Event {
 })
 export class EventListComponent {
   @Input() events: Event[];
+
+  displayedColumns: string[] = ["timestamp", "org", "event", "object"];
 
   constructor() {}
 

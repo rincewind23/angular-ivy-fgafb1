@@ -1,4 +1,6 @@
 import { Component, Input } from "@angular/core";
+import { NewConnectionDialog } from "./dialogs/newConnectionDialog.component";
+import { MatDialog } from "@angular/material/dialog";
 
 export interface Connection {
   checked: boolean;
@@ -17,6 +19,8 @@ export interface Connection {
 export class ConnectionListComponent {
   @Input() connections: Connection[];
 
+  constructor(public dialog: MatDialog) {}
+
   anySelected: boolean = false;
 
   /**
@@ -31,6 +35,18 @@ export class ConnectionListComponent {
    */
   showAddDialog() {
     console.log("Show Add Dialog");
+    const dialogRef = this.dialog.open(NewConnectionDialog, {
+      height: "400px",
+      width: "600px"
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log("The dialog was closed");
+      console.log(JSON.stringify(result, null, 2));
+      if (result.connection) {
+        this.connections.push(result.connection);
+      }
+    });
   }
 
   checkChanged() {
