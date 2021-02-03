@@ -1,7 +1,5 @@
 import { Component, OnInit, VERSION } from "@angular/core";
 
-import { Connection } from "./connectionList.component";
-import { SubscriptionListComponent } from "./subscriptionList.component";
 import { Subscription } from "./subscriptionList.component";
 import { Event } from "./eventList.component";
 import axios from "axios";
@@ -27,7 +25,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.getSubscriptions();
     axios.get(httpUrl + "/events").then(response => {
       this.events = response.data;
@@ -47,6 +44,6 @@ export class AppComponent implements OnInit {
       { checked: false, name: "SomeOtherthing" }
     ]);
     this.subscriptions = subs;
-    console.log(`keys: ${JSON.stringify(this.subscriptions)}`);    
+    console.log(`keys: ${JSON.stringify(this.subscriptions)}`);
   }
 }

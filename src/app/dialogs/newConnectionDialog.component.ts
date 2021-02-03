@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { MatDialogRef } from "@angular/material/dialog";
 import { Connection } from "../connectionList.component";
+
 @Component({
   templateUrl: "./newConnectionDialog.component.html",
   styleUrls: ["./style.css"]
