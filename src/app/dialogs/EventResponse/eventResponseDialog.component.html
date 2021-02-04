@@ -1,17 +1,13 @@
 <h1 mat-dialog-title>Respond to event</h1>
 <div mat-dialog-content class="x">
-	<mat-form-field appearance="fill">
-		<mat-label>Approved?</mat-label>
-		<mat-checkbox [(ngModel)]="approved">Approved?</mat-checkbox>
-	</mat-form-field>
+  <mat-checkbox [(ngModel)]="approved">Approved?</mat-checkbox>
 	<mat-form-field appearance="fill">
 		<mat-label>Comment</mat-label>
-		<input matInput [(ngModel)]="comment">
+		<input matInput [(ngModel)]="comment" name="comment"/>
 	</mat-form-field>
 		<mat-form-field appearance="fill">
 			<mat-label>Approver</mat-label>
-			<input matInput [(ngModel)]="approver">
-      <mat-error *ngIf="!approver">Secret is required</mat-error>
+			<input matInput [(ngModel)]="approver" name="approver"/>
 		</mat-form-field>
 </div>
 <div mat-dialog-actions>
