@@ -21,6 +21,14 @@ export class Summarizer {
         ret.push(item("Query", event.query));
         ret.push(item("Search Name", event.searchName));
         break;
+      case "idn:access-request-pre-approval":
+        ret.push(item("Requested By", event.requestedBy.name));
+        ret.push(item("Requested For", event.requestedFor.name));
+        ret.push(item("Request", event.requestedItems[0].operation+" "+event.requestedItems[0].name));
+        if (event.requestedItems[0].comment) {
+          ret.push(item("Comment", event.requestedItems[0].comment));
+        }
+        break;
       default:
         ret.push(item("summary", "Unhandled event type"));
         ret.push(item("error", "Unable to summarize"));

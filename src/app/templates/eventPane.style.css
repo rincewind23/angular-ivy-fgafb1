@@ -1,8 +1,28 @@
 .eventPane {
-  flex: 2;
+  display: flex;
+  flex: 1;
+  height: 100%;
 }
 
 .json {
+  display: flex;
+  border: seagreen 10px;
+}
+
+.jsonviewer {
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
+  max-height: 90%;
+}
+
+mat-cell,
+.mat-cell {
+  /* display:block;  */
+  min-height: auto;
+  padding: 12px 16px 12px 0;
+}
+
+.summaryTab {
+  display: flex;
+  flex-direction: row;
 }

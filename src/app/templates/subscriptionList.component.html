@@ -5,8 +5,10 @@
 			<mat-expansion-panel-header>
 				<mat-panel-title>{{org}}</mat-panel-title>
 			</mat-expansion-panel-header>
-			<mat-checkbox *ngFor="let subscription of subscriptions.get(org)" [(ngModel)]="subscription.checked"
-				(change)="checkChanged()">{{subscription.name}}</mat-checkbox>
+			<div class="orgSubscriptions">
+				<mat-checkbox *ngFor="let subscription of subscriptions.get(org)" [(ngModel)]="subscription.checked"
+					(change)="checkChanged()">{{subscription.name}}</mat-checkbox>
+			</div>
 		</mat-expansion-panel>
 	</mat-accordion>
 	<div class="buttons">

@@ -10,7 +10,7 @@
 	</mat-form-field>
 	<mat-form-field appearance="fill">
 		<mat-label>{{triggerPlaceholder}}</mat-label>
-		<mat-select [(ngModel)]="selectedTrigger">
+		<mat-select (selectionChange)="onTriggerChange($event)" [(ngModel)]="selectedTrigger">
 			<mat-option *ngFor="let trigger of triggerTypes" [value]="trigger.id">
 				{{trigger.name}}
 			</mat-option>

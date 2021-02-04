@@ -60,8 +60,10 @@ export class EventSubscriptionDialog {
     console.log(`trigger change: ${event.value}`);
     this.availableActions = [];
     this.actions.forEach(action => {
+      console.log(`checking ${action.trigger} against ${event.value}`);
       if (action.trigger == "*" || action.trigger == event.value) {
         this.availableActions.push(action);
+        this.triggerPlaceholder = "Select an action";
       }
     });
   }

@@ -54,10 +54,8 @@ export class AppComponent implements OnInit {
 
   getSubscriptions() {
     axios.get(httpUrl + "/subscriptions").then(response => {
-      console.log(`response=${JSON.stringify(response)}`);
       let subs = new Map<string, Subscription[]>();
       response.data.forEach(row => {
-        console.log(JSON.stringify(row, null, 2));
         let org: Subscription[] = subs.get(row.org);
         if (!org) {
           org = [];
@@ -68,10 +66,8 @@ export class AppComponent implements OnInit {
           name: row.triggerid,
           checked: false
         } as Subscription);
-        console.log(`subs=${JSON.stringify(subs, null, 2)}`);
       });
       this.subscriptions = subs;
-      console.log(`subs=${JSON.stringify(subs, null, 2)}`);
     });
   }
 
@@ -91,8 +87,10 @@ export class AppComponent implements OnInit {
         console.log(
           `this.selectedSummary = ${JSON.stringify(this.selectedSummary)}`
         );
+        console.log(`selectedEvent: ${JSON.stringify(this.selectedEvent)}`);
       });
     }
+    console.log(`selectedEvent: ${JSON.stringify(this.selectedEvent)}`);
   }
 
   ngOnInit() {

@@ -25,6 +25,7 @@ export class SubscriptionListComponent {
   anySelected: boolean = false;
 
   orgs() {
+    if (!this.subscriptions) return [];
     return Array.from(this.subscriptions.keys());
   }
 

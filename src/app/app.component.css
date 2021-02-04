@@ -1,19 +1,24 @@
 .wrapper,
 html,
 body {
-  border: solid 1px;
   margin: 0px;
   padding: 0px;
-  height: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
+.wrapper {
+  min-height: 100vh;
+  border: solid 1px purple;
+}
 p.title {
   font-family: Lato;
   margin-left: 10px;
 }
 .dashboard {
   display: flex;
-  border: solid;
+  height: 100%;
 }
 .dashboardLeftColumn {
   display: flex;
@@ -28,5 +33,12 @@ p.title {
   border: lightcoral;
   flex: 5;
   display: flex;
-  align-items: stretch;
+}
+
+.rightTop {
+  flex: 1;
+}
+
+.rightBottom {
+  flex: 1;
 }

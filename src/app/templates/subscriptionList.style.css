@@ -1,7 +1,12 @@
 h1 {
   font-family: Lato;
 }
-.mat-expansion-panel-body {
+mat-accordion {
+  display: flex;
+  flex-direction: column;
+}
+.orgSubscriptions {
   border: 1px;
+  display: flex;
   flex-direction: column;
 }

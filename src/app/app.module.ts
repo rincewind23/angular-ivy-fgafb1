@@ -23,7 +23,7 @@ import { EventSubscriptionDialog } from "./dialogs/EventSubscription/eventSubscr
 import { NewConnectionDialog } from "./dialogs/newConnectionDialog.component";
 import { SubscriptionListComponent } from "./subscriptionList.component";
 //----------------------------------
-import { NgxJsonViewerModule } from "ngx-json-viewer-scrolling";
+import { NgxJsonViewerModule } from "ngx-json-viewer";
 
 @NgModule({
   imports: [

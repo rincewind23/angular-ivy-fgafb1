@@ -15,5 +15,19 @@ export class EventPaneComponent {
   @Input() event: FullEvent;
   @Input() summary: SummaryItem[];
 
+  displayedColumns: string[] = ["field", "value"];
+
   constructor() {}
+
+  isRespondable() {
+    if (!this.event) return false;
+    let meta = this.event["_metadata"];
+    if (!meta) return false;
+    if (meta.triggerType == "requestResponse") return true;
+    return false;
+  }
+
+  doResponse() {
+    
+  }
 }
