@@ -5,6 +5,7 @@ import {
   EventTriggerQueryService,
   Trigger
 } from "../../eventTriggerQueryService";
+import { Action, ActionQueryService } from "../../actionQueryService";
 
 export interface EventSubscriptionData {
   connections: Connection[];
@@ -19,10 +20,14 @@ export class EventSubscriptionDialog {
   connections: Connection[];
   triggerTypes: Trigger[];
   etqs: EventTriggerQueryService;
+  availableActions: Action[];
+  actions: Action[];
 
   selectedOrg: Connection;
   selectedTrigger: Trigger;
+  selectedAction: Action;
   triggerPlaceholder: string;
+  actionPlaceholder = "select a trigger first";
 
   constructor(
     public dialogRef: MatDialogRef<EventSubscriptionDialog>,
@@ -32,6 +37,10 @@ export class EventSubscriptionDialog {
     console.log(`connections=${JSON.stringify(data.connections)}`);
     this.connections = data.connections;
     this.etqs = new EventTriggerQueryService();
+    ActionQueryService.getActions().then(actions => {
+      this.actions = actions;
+      this.availableActions = [];
+    });
   }
 
   onOrgChange(event) {
@@ -44,6 +53,16 @@ export class EventSubscriptionDialog {
       console.log(`triggers=${JSON.stringify(triggers)}`);
       this.triggerTypes = triggers;
       this.triggerPlaceholder = "Select Trigger type";
+    });
+  }
+
+  onTriggerChange(event) {
+    console.log(`trigger change: ${event.value}`);
+    this.availableActions = [];
+    this.actions.forEach(action => {
+      if (action.trigger == "*" || action.trigger == event.value) {
+        this.availableActions.push(action);
+      }
     });
   }
 

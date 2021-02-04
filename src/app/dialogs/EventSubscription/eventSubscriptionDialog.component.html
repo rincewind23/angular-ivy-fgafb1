@@ -16,6 +16,14 @@
 			</mat-option>
 		</mat-select>
 	</mat-form-field>
+	<mat-form-field appearance="fill">
+		<mat-label>{{actionPlaceholder}}</mat-label>
+		<mat-select [(ngModel)]="selectedAction">
+			<mat-option *ngFor="let action of availableActions" [value]="action.name">
+				{{action.label}}
+			</mat-option>
+		</mat-select>
+	</mat-form-field>
 </div>
 <div mat-dialog-actions>
 	<button mat-button (click)="onNoClick()">Cancel</button>
