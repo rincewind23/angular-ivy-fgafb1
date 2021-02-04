@@ -14,7 +14,7 @@
 				<!-- <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr> -->
 				<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 			</table>
-			<button *ngIf="isRespondable()" (click)="doResponse()">Respond</button>
+			<button mat-raised-button *ngIf="isRespondable()" (click)="doResponse()">Respond</button>
 		</mat-tab>
 		<mat-tab label="JSON">
 			<div class="json">
