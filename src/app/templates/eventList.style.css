@@ -2,3 +2,7 @@ table {
   flex-grow: 1;
   min-width: 100%;
 }
+
+.highlight {
+  background: #42a948; /* green */
+}

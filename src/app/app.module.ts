@@ -17,6 +17,7 @@ import { PortalModule } from "@angular/cdk/portal";
 import { AppComponent } from "./app.component";
 import { ConnectionListComponent } from "./connectionList.component";
 import { EventListComponent } from "./eventList.component";
+import { EventPaneComponent } from "./eventPane.component";
 import { EventSubscriptionDialog } from "./dialogs/EventSubscription/eventSubscriptionDialog.component";
 import { NewConnectionDialog } from "./dialogs/newConnectionDialog.component";
 import { SubscriptionListComponent } from "./subscriptionList.component";
@@ -40,11 +41,12 @@ import { SubscriptionListComponent } from "./subscriptionList.component";
   ],
   declarations: [
     AppComponent,
-    EventSubscriptionDialog,
     ConnectionListComponent,
     EventListComponent,
-    SubscriptionListComponent,
-    NewConnectionDialog
+    EventPaneComponent,
+    EventSubscriptionDialog,
+    NewConnectionDialog,
+    SubscriptionListComponent
   ],
   bootstrap: [AppComponent]
 })

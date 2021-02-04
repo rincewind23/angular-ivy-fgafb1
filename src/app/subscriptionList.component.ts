@@ -6,6 +6,7 @@ import { MatDialog } from "@angular/material/dialog";
 export interface Subscription {
   checked: boolean;
   name: string;
+  id: string;
 }
 @Component({
   selector: "subscriptionList",
@@ -73,7 +74,8 @@ export class SubscriptionListComponent {
     }
     this.subscriptions.get(org).push({
       checked: false,
-      name: id
+      name: id,
+      id: "x"
     });
   }
 }
