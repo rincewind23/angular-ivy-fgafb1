@@ -1,7 +1,6 @@
 import { Component, Input } from "@angular/core";
 import { SummaryItem } from "./summary.component";
 import { MatDialog } from "@angular/material/dialog";
-import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 
 import { EventResponseDialog } from "./dialogs/EventResponse/eventResponseDialog.component";
 
