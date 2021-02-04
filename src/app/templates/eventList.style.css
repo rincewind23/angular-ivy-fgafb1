@@ -1,5 +1,8 @@
+.eventList {
+  flex: 5;
+}
+
 table {
-  flex-grow: 1;
   min-width: 100%;
 }
 

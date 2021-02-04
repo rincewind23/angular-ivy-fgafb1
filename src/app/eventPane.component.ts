@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-
+import { SummaryItem } from "./summary.component";
 export interface FullEvent {
   event: object;
 }
@@ -13,6 +13,7 @@ export interface FullEvent {
 })
 export class EventPaneComponent {
   @Input() event: FullEvent;
+  @Input() summary: SummaryItem[];
 
   constructor() {}
 }

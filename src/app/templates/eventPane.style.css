@@ -1,0 +1,8 @@
+.eventPane {
+  flex: 2;
+}
+
+.json {
+  overflow-x: hidden;
+  overflow-y: scroll;
+}

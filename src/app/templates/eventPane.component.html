@@ -1,0 +1,14 @@
+<div class="dashboardComponent eventPane">
+	<div class="header">Event</div>
+	<mat-tab-group>
+		<mat-tab label="Summary">
+			<li *ngFor="let item of summary">{{item.label}} : {{item.value}}</li>
+		</mat-tab>
+		<mat-tab label=" JSON">
+			<div class="json">
+				<ngx-json-viewer [json]="event">
+				</ngx-json-viewer>
+			</div>
+		</mat-tab>
+	</mat-tab-group>
+</div>

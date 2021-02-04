@@ -3,6 +3,8 @@ import { Component, OnInit, VERSION } from "@angular/core";
 import { Subscription } from "./subscriptionList.component";
 import { Event } from "./eventList.component";
 import { FullEvent } from "./eventPane.component";
+import { ViewEncapsulation } from "@angular/core";
+import { SummaryItem, Summarizer } from "./summary.component";
 import axios from "axios";
 
 const httpUrl = "https://idn-ets-dashboard.herokuapp.com";
@@ -10,7 +12,8 @@ const httpUrl = "https://idn-ets-dashboard.herokuapp.com";
 @Component({
   selector: "my-app",
   templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.css"]
+  styleUrls: ["./app.component.css"],
+  encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
   lastEventTimestamp;
@@ -19,6 +22,10 @@ export class AppComponent implements OnInit {
   subscriptions = null;
   events: Event[] = [];
   selectedEvent: FullEvent;
+  selectedSummary: SummaryItem[];
+  selectedEventID: string;
+  fullEvents = {};
+  summaryEvents = {};
 
   getConnections() {
     axios.get(httpUrl + "/connections").then(response => {
@@ -33,6 +40,15 @@ export class AppComponent implements OnInit {
       if (this.events.length > 0) {
         this.lastEventTimestamp = this.events[this.events.length - 1].timestamp;
       }
+    });
+  }
+
+  getEvent(guid) {
+    return axios.get(httpUrl + "/events/" + guid).then(response => {
+      let event = response.data;
+      console.log(`event=${JSON.stringify(event)}`);
+      this.fullEvents[guid] = event;
+      this.summaryEvents[guid] = Summarizer.summarize(event);
     });
   }
 
@@ -57,6 +73,26 @@ export class AppComponent implements OnInit {
       this.subscriptions = subs;
       console.log(`subs=${JSON.stringify(subs, null, 2)}`);
     });
+  }
+
+  updateSelectedEvent(event) {
+    console.log(`update: ${event}`);
+    this.selectedEventID = event;
+    if (this.fullEvents[event]) {
+      this.selectedEvent = this.fullEvents[event];
+      this.selectedSummary = this.summaryEvents[event];
+      console.log(
+        `(Cache)this.selectedSummary = ${JSON.stringify(this.selectedSummary)}`
+      );
+    } else {
+      this.getEvent(event).then(ok => {
+        this.selectedEvent = this.fullEvents[event];
+        this.selectedSummary = this.summaryEvents[event];
+        console.log(
+          `this.selectedSummary = ${JSON.stringify(this.selectedSummary)}`
+        );
+      });
+    }
   }
 
   ngOnInit() {

@@ -1,18 +1,32 @@
-p {
+.wrapper,
+html,
+body {
+  border: solid 1px;
+  margin: 0px;
+  padding: 0px;
+  height: 100%;
+}
+
+p.title {
   font-family: Lato;
+  margin-left: 10px;
 }
 .dashboard {
   display: flex;
   border: solid;
 }
 .dashboardLeftColumn {
+  display: flex;
   flex-direction: column;
   border: darkgreen;
-  flex-grow: 0;
+  flex: 2;
+  align-items: stretch;
 }
 
 .dashboardRightColumn {
   flex-direction: column;
   border: lightcoral;
-  flex-grow: 2;
+  flex: 5;
+  display: flex;
+  align-items: stretch;
 }

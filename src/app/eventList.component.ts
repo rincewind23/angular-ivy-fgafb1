@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 
 export interface Event {
   guid: string;
@@ -15,6 +15,7 @@ export interface Event {
 })
 export class EventListComponent {
   @Input() events: Event[];
+  @Output() selectionChange = new EventEmitter();
 
   selectedRowIndex = -1;
 
@@ -27,5 +28,6 @@ export class EventListComponent {
   highlight(row) {
     console.log(`Highlight: ${row.guid}`);
     this.selectedRowIndex = row.guid;
+    this.selectionChange.emit(row.guid);
   }
 }

@@ -1,12 +1,15 @@
-<p>
-	ETS Dashboard
-</p>
-<div id="connections" class="dashboard">
-	<div class="dashboardLeftColumn">
-		<connectionList [connections]="connections"></connectionList>
-		<subscriptionList [connections]="connections" [subscriptions]="subscriptions"></subscriptionList>
-	</div>
-	<div class="dashboardRightColumn">
-		<eventList [events]="events"></eventList>
+<div class="wrapper">
+	<p class="title">
+		ETS Dashboard
+	</p>
+	<div id="connections" class="dashboard">
+		<div class="dashboardLeftColumn">
+			<connectionList [connections]="connections"></connectionList>
+			<subscriptionList [connections]="connections" [subscriptions]="subscriptions"></subscriptionList>
+		</div>
+		<div class="dashboardRightColumn">
+			<eventList (selectionChange)="updateSelectedEvent($event)" [events]="events"></eventList>
+			<eventPane [event]="selectedEvent" [summary]="selectedSummary"></eventPane>
+		</div>
 	</div>
 </div>
