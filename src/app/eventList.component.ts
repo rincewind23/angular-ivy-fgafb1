@@ -18,7 +18,8 @@ export class EventListComponent {
 
   displayedColumns: string[] = ["timestamp", "org", "event", "object"];
 
-  constructor() {}
+  constructor() {
+    this.events = [];
+  }
 
-  respond() {}
 }

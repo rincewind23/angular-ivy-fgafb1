@@ -1,4 +1,5 @@
 import { Component, Input } from "@angular/core";
+import { CommonModule } from "@angular/common";
 import { NewConnectionDialog } from "./dialogs/newConnectionDialog.component";
 import { MatDialog } from "@angular/material/dialog";
 

@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { MatDialogRef } from "@angular/material/dialog";
 import { Connection } from "../connectionList.component";
 
+import axios from "axios";
 @Component({
   templateUrl: "./newConnectionDialog.component.html",
   styleUrls: ["./style.css"]
@@ -28,8 +29,16 @@ export class NewConnectionDialog {
       client_id: this.newID
     } as Connection;
 
-    this.dialogRef.close({
-      connection: connection
+    axios.post("/connections", {
+      org: this.newOrg,
+      clientid: this.newID,
+      secret: this.newSecret
+    }).then(response => {
+      this.dialogRef.close({
+        connection: connection
+      })
+    }, error => {
+      console.log(`Error: ${error}`);
     });
   }
 
