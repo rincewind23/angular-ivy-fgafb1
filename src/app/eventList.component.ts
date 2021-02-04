@@ -16,10 +16,16 @@ export interface Event {
 export class EventListComponent {
   @Input() events: Event[];
 
+  selectedRowIndex = -1;
+
   displayedColumns: string[] = ["timestamp", "org", "event", "object"];
 
   constructor() {
     this.events = [];
   }
 
+  highlight(row) {
+    console.log(`Highlight: ${row.guid}`);
+    this.selectedRowIndex = row.guid;
+  }
 }
