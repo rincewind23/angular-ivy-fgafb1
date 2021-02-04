@@ -19,6 +19,7 @@ import { AppComponent } from "./app.component";
 import { ConnectionListComponent } from "./connectionList.component";
 import { EventListComponent } from "./eventList.component";
 import { EventPaneComponent } from "./eventPane.component";
+import { EventResponseDialog } from "./dialogs/EventResponse/eventResponseDialog.component";
 import { EventSubscriptionDialog } from "./dialogs/EventSubscription/eventSubscriptionDialog.component";
 import { NewConnectionDialog } from "./dialogs/newConnectionDialog.component";
 import { SubscriptionListComponent } from "./subscriptionList.component";
@@ -49,6 +50,7 @@ import { NgxJsonViewerModule } from "ngx-json-viewer";
     ConnectionListComponent,
     EventListComponent,
     EventPaneComponent,
+    EventResponseDialog,
     EventSubscriptionDialog,
     NewConnectionDialog,
     SubscriptionListComponent

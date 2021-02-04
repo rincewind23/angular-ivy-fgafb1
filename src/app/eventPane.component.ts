@@ -1,11 +1,14 @@
 import { Component, Input } from "@angular/core";
 import { SummaryItem } from "./summary.component";
 import { MatDialog } from "@angular/material/dialog";
+import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+
 import { EventResponseDialog } from "./dialogs/EventResponse/eventResponseDialog.component";
 
 export interface FullEvent {
   event: object;
 }
+
 @Component({
   selector: "eventPane",
   templateUrl: "./templates/eventPane.component.html",
@@ -17,7 +20,6 @@ export interface FullEvent {
 export class EventPaneComponent {
   @Input() event: FullEvent;
   @Input() summary: SummaryItem[];
-
 
   displayedColumns: string[] = ["field", "value"];
 
@@ -32,7 +34,6 @@ export class EventPaneComponent {
   }
 
   doResponse() {
-
     console.log("Show Response Dialog");
     const dialogRef = this.dialog.open(EventResponseDialog, {
       height: "400px",
@@ -43,8 +44,5 @@ export class EventPaneComponent {
       console.log("The dialog was closed");
       console.log(JSON.stringify(result, null, 2));
     });
-  }
-
-
   }
 }
