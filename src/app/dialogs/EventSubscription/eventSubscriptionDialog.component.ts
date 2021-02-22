@@ -23,9 +23,9 @@ export class EventSubscriptionDialog {
   availableActions: Action[];
   actions: Action[];
 
-  selectedOrg: Connection;
-  selectedTrigger: Trigger;
-  selectedAction: Action;
+  selectedOrg: string;
+  selectedTrigger: string;
+  selectedAction: string;
   triggerPlaceholder: string;
   actionPlaceholder = "select a trigger first";
 
@@ -72,9 +72,11 @@ export class EventSubscriptionDialog {
     this.dialogRef.close();
   }
 
-  subscribe(org: any, triggerId: any) {
-    console.log(`subscribe: ${org}`);
-    console.log(`triggerId: ${triggerId}`);
-    this.etqs.subscribe(org, triggerId);
+  subscribe() {
+    return this.etqs.subscribe(
+      this.selectedOrg,
+      this.selectedTrigger,
+      this.selectedAction
+    );
   }
 }

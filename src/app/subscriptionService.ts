@@ -7,7 +7,11 @@ import axios from "axios";
 export class SubscriptionService {
   constructor() {}
 
-  static subscribe(org, triggerid, action): Promise<boolean> {
+  static subscribe(
+    org: string,
+    triggerid: string,
+    action: string
+  ): Promise<boolean> {
     if (!org) {
       throw "SubscriptionService.subscribe: org required";
     }

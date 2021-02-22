@@ -27,5 +27,5 @@
 </div>
 <div mat-dialog-actions>
 	<button mat-button (click)="onNoClick()">Cancel</button>
-	<button mat-button [mat-dialog-close]="{org:selectedOrg,trigger:selectedTrigger}" (click)="subscribe(selectedOrg, selectedTrigger)" cdkFocusInitial>Ok</button>
+	<button mat-button [mat-dialog-close]="{org:selectedOrg,trigger:selectedTrigger,action:selectedAction}" (click)="subscribe()" cdkFocusInitial>Ok</button>
 </div>

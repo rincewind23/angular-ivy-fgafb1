@@ -1,7 +1,6 @@
 import { Component } from "@angular/core";
 import { MatDialogRef } from "@angular/material/dialog";
-import { Connection } from "../connectionList.component";
-
+import { ConnectionService } from "../connectionService";
 import axios from "axios";
 @Component({
   templateUrl: "./newConnectionDialog.component.html",
@@ -11,6 +10,8 @@ export class NewConnectionDialog {
   newOrg: string;
   newID: string;
   newSecret: string;
+  connectionError: string;
+  statusMessage: string;
 
   constructor(public dialogRef: MatDialogRef<NewConnectionDialog>) {}
 
@@ -23,23 +24,21 @@ export class NewConnectionDialog {
     console.log(`id: ${this.newID}`);
     console.log(`secret: ${this.newSecret}`);
 
-    let connection = {
-      checked: false,
-      org: this.newOrg,
-      client_id: this.newID
-    } as Connection;
+    this.connectionError = null;
+    this.statusMessage = "Connecting..";
 
-    axios.post("/connections", {
-      org: this.newOrg,
-      clientid: this.newID,
-      secret: this.newSecret
-    }).then(response => {
-      this.dialogRef.close({
-        connection: connection
-      })
-    }, error => {
-      console.log(`Error: ${error}`);
-    });
+    ConnectionService.connect(this.newOrg, this.newID, this.newSecret).then(
+      response => {
+        this.dialogRef.close({
+          connection: response
+        });
+      },
+      error => {
+        console.log(`Error: ${error}`);
+        this.statusMessage = null;
+        this.connectionError = error;
+      }
+    );
   }
 
   valid() {

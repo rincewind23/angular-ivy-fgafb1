@@ -1,7 +1,7 @@
 import { Component, OnInit, VERSION } from "@angular/core";
 
 import { Subscription } from "./subscriptionList.component";
-import { Event } from "./eventList.component";
+import { ETSEvent } from "./eventList.component";
 import { FullEvent } from "./eventPane.component";
 import { ViewEncapsulation } from "@angular/core";
 import { SummaryItem, Summarizer } from "./summary.component";
@@ -16,16 +16,17 @@ const httpUrl = "https://idn-ets-dashboard.herokuapp.com";
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
-  lastEventTimestamp;
+  lastEventTimestamp: Date;
 
   connections = [];
   subscriptions = null;
-  events: Event[] = [];
+  events: ETSEvent[] = [];
   selectedEvent: FullEvent;
   selectedSummary: SummaryItem[];
   selectedEventID: string;
   fullEvents = {};
   summaryEvents = {};
+  poller = null;
 
   getConnections() {
     axios.get(httpUrl + "/connections").then(response => {
@@ -33,13 +34,29 @@ export class AppComponent implements OnInit {
     });
   }
 
-  getEvents() {
-    axios.get(httpUrl + "/events").then(response => {
-      this.events = response.data;
-      console.log(`events=${JSON.stringify(this.events)}`);
-      if (this.events.length > 0) {
-        this.lastEventTimestamp = this.events[this.events.length - 1].timestamp;
+  /** Get event list from the server */
+  getEvents(since: Date) {
+    let url = httpUrl + "/events";
+    if (since) url += "?since=" + since.getTime();
+
+    return axios.get(url).then(response => {
+      let newEvents: ETSEvent[] = response.data;
+      if (newEvents.length > 0) {
+        this.events = this.events.concat(newEvents);
+
+        this.lastEventTimestamp = new Date(
+          newEvents[newEvents.length - 1].tstamp
+        );
       }
+    });
+  }
+
+  // Get events, and then set up a timer to query every 5 seconds
+  setupEventsPoller() {
+    return this.getEvents(null).then(events => {
+      this.poller = setInterval(() => {
+        return this.getEvents(this.lastEventTimestamp);
+      }, 5000);
     });
   }
 
@@ -95,7 +112,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.getConnections();
-    this.getEvents();
+    this.setupEventsPoller();
     this.getSubscriptions();
 
     // let subs = new Map<string, Subscription[]>();
@@ -109,5 +126,14 @@ export class AppComponent implements OnInit {
     // ]);
     // this.subscriptions = subs;
     // console.log(`keys: ${JSON.stringify(this.subscriptions)}`);
+  }
+
+  ngOnDestroy() {
+    // Clear any existing poller
+    if (this.poller) {
+      console.log(`clearing poller ${this.poller}`);
+      clearInterval(this.poller);
+      this.poller = null;
+    }
   }
 }

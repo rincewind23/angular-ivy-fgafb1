@@ -36,12 +36,18 @@ export class EventTriggerQueryService {
       });
   }
 
-  subscribe(org: string, triggerId: string): Promise<string> {
+  subscribe(org: string, triggerId: string, action: string): Promise<string> {
     let retval: string = "";
+    console.log("--ETQS.subscribe--");
+    console.log(`subscribe: ${org}`);
+    console.log(`triggerId: ${triggerId}`);
+    console.log(`action: ${action}`);
+
     return axios
       .post("https://idn-ets-dashboard.herokuapp.com/subscriptions/subscribe", {
         org: org,
-        trigger: triggerId
+        trigger: triggerId,
+        action: action
       })
       .then(response => {
         // Response is an array of strings

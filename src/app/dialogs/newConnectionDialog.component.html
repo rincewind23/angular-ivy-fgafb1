@@ -15,6 +15,8 @@
 		<input matInput [(ngModel)]="newSecret">
 		<mat-error *ngIf="!newSecret">Secret is required</mat-error>
 	</mat-form-field>
+	<span *ngIf="connectionError" style='color: red'>{{ connectionError }}</span>
+	<span *ngIf="statusMessage" >{{ statusMessage }}</span>
 </div>
 <div mat-dialog-actions>
 	<button mat-button (click)="onNoClick()">Cancel</button>

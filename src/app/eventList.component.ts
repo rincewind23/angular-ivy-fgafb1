@@ -1,9 +1,12 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 
-export interface Event {
+export interface ETSEvent {
   guid: string;
-  timestamp: Date;
+  tstamp: Date;
   org: string;
+  triggerid: string;
+  triggertype: string;
+  target: string;
 }
 @Component({
   selector: "eventList",
@@ -14,7 +17,7 @@ export interface Event {
   ]
 })
 export class EventListComponent {
-  @Input() events: Event[];
+  @Input() events: ETSEvent[];
   @Output() selectionChange = new EventEmitter();
 
   selectedRowIndex = -1;
