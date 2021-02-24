@@ -2,6 +2,7 @@ import { Component, Input } from "@angular/core";
 import { Connection } from "./connectionList.component";
 import { EventSubscriptionDialog } from "./dialogs/EventSubscription/eventSubscriptionDialog.component";
 import { MatDialog } from "@angular/material/dialog";
+import { SubscriptionService } from "./subscriptionService";
 
 export interface Subscription {
   checked: boolean;
@@ -65,7 +66,19 @@ export class SubscriptionListComponent {
    * Removes selected event subscriptions
    */
   removeSelected() {
-    console.log("Remove selected events");
+    console.log("Remove selected subscriptions");
+    let toRemove = [];
+    this.subscriptions.forEach((value: Subscription[], key: string) => {
+      value.forEach(subscription => {
+        if (subscription.checked) {
+          toRemove.push({
+            org: key,
+            subscriptionId: subscription.id
+          });
+        }
+      });
+    });
+    return SubscriptionService.unsubscribe(toRemove);
   }
 
   addTriggerSubscription(org: string, id: string) {

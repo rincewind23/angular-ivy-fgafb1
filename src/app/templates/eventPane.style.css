@@ -1,7 +1,7 @@
 .eventPane {
   display: flex;
-  flex: 1;
   height: 100%;
+  min-height: 0;
 }
 
 .json {
@@ -11,8 +11,8 @@
 
 .jsonviewer {
   overflow-x: hidden;
-  overflow-y: auto;
   max-height: 90%;
+  overflow-y: auto;
 }
 
 mat-cell,
@@ -20,6 +20,11 @@ mat-cell,
   /* display:block;  */
   min-height: auto;
   padding: 12px 16px 12px 0;
+}
+
+mat-tab-group {
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .summaryTab {

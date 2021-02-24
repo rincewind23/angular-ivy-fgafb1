@@ -2,7 +2,7 @@
   display: flex;
   border: solid 1px;
   flex-direction: column;
-  margin: 10px;
+  padding: 10px;
 }
 .dashboardComponent .header {
   font-family: Arial;

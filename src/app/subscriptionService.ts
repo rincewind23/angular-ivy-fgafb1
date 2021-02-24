@@ -37,4 +37,21 @@ export class SubscriptionService {
         throw error;
       });
   }
+
+  static unsubscribe(toRemove: any[]) {
+    return axios
+      .post(
+        "https://idn-ets-dashboard.herokuapp.com/subscriptions/unsubscribe",
+        toRemove
+      )
+      .then(response => {
+        // Response is an array of strings
+        console.log(`${response.data}`);
+        return true;
+      })
+      .catch(error => {
+        console.log(`Error: ${error}`);
+        throw error;
+      });
+  }
 }

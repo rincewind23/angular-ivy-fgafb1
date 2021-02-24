@@ -1,13 +1,15 @@
 .eventList {
-  flex: 5;
   height: 100%;
+  min-height: 0;
 }
 
 table {
   min-width: 100%;
-  min-height: 100%;
 }
 
+div .table {
+  overflow-y: scroll;
+}
 .highlight {
   background: #42a948; /* green */
 }
